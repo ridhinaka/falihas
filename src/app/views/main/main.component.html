@@ -1,0 +1,55 @@
+
+<div class="web" style="height: 100%">
+
+  <mat-toolbar color="primary" style="justify-content: center" fxLayoutGap="8px">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="homePage()">
+      <mat-icon>home</mat-icon>
+    </button>
+    <span>Welcome To Mini Games</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+
+  <ng-container *ngIf="playAudioVar === 1">
+    <audio id="audio" autoplay> 
+      <source src="../../../assets/songs.mp3" type="audio/mpeg">
+    </audio>
+  
+  </ng-container>
+
+  <ng-container *ngIf="step === 0">
+    <div fxLayout="row" fxLayoutGap="8px" style="height: 80%; justify-content: space-around; align-items: center">    
+      <mat-card style="display: flex!important;width:80%;justify-content: space-around;">
+        <ng-container *ngFor="let eachGame of gamesChallenge">
+          <button class="pointer" [disabled]="disabledButton(eachGame)" mat-icon-button (click)="openGamesModal(eachGame)">
+            <mat-icon [color]="getColor(eachGame)">circle</mat-icon>{{ eachGame["name"] }} {{eachGame['done'] === 1 ? 'Sudah berhasil' : ''}}
+          </button>
+        </ng-container>
+      </mat-card>
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="step === 1">
+    <div style="height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;"> 
+      <button style="width: 10%;" mat-raised-button color="warn" (click)="stopAudio()">Stop Audio</button>
+      <div style="
+          height: 90%;
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+        ">
+        <iframe style="width: 80%;
+        height: 90%;" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </ng-container>
+</div>

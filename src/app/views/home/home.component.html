@@ -1,0 +1,31 @@
+<section class="mobile">
+  <h2>Dibilangin buka dilaptop ngeyel</h2>
+</section>
+  <div class="web" [ngStyle]="{ backgroundImage: 'url(../../../assets/background.jpeg)',height:'100%',display:'flex',flexDirection:'column',backgroundSize:'cover',backgroundRepeat:'no-repeat',backgroundPosition:'center',backgroundAttachment:'fixed',alignItems:'center',justifyContent:'center',zIndex:0 }">
+
+    <mat-card fxLayout="column">
+      <ng-container *ngIf="question === 1">
+        <h1 style="font-size: 15px;font-weight: bolder;text-align: center;">Your full name please</h1>
+        <mat-form-field>
+          <mat-label>Fill your answer</mat-label>
+          <input matInput [formControl]="validationHomeQuestion1" placeholder="..." type="text" />
+        </mat-form-field>
+      </ng-container>
+    
+      <ng-container *ngIf="question === 2">
+        <h1 style="font-size: 15px;font-weight: bolder;text-align: center;">Your boyfriend full name please</h1>
+        <mat-form-field>
+          <mat-label>Fill your answer</mat-label>
+          <input matInput [formControl]="validationHomeQuestion2" placeholder="..." type="text" />
+        </mat-form-field>
+      </ng-container>
+    
+      <ng-container *ngIf="question === 1">
+        <button mat-raised-button (click)="nextButton()" color="accent">Next</button>
+      </ng-container>
+      <ng-container *ngIf="question === 2">
+        <button mat-raised-button (click)="startButton()" color="primary">Let's Start!</button>
+      </ng-container>
+    </mat-card>
+    </div>
+

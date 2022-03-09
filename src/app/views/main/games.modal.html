@@ -1,0 +1,112 @@
+<!-- <mat-spinner></mat-spinner> -->
+<div fxLayout="column" style="height: 100%">
+  <div fxLayout="row">
+    <div fxFlex="95" style="text-align: center">
+      <ng-container *ngIf="data['value'] === 1">
+        <h1 style="font-size: 18px; font-weight: bolder">Questions Game</h1>
+      </ng-container>
+      <ng-container *ngIf="data['value'] === 2">
+        <h1 style="font-size: 18px; font-weight: bolder">Suit Game</h1>
+      </ng-container>
+
+      <ng-container *ngIf="data['value'] === 3">
+        <h1 style="font-size: 18px; font-weight: bolder">Your Wish!</h1>
+      </ng-container>
+      <ng-container *ngIf="data['value'] === 3"> </ng-container>
+    </div>
+
+    <div fxFlex="5">
+      <button mat-icon-button color="warn" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="data['value'] === 1" [formGroup]="submitCardForm">
+    <div fxLayout="row" fxLayoutAlign="end">
+      <h1 style="font-size: 12px;font-weight: bolder;">
+        Correct : {{totalPointChallenge1}}
+      </h1>
+    </div>
+    <div fxLayout="column">
+      <h1 style="font-size: 14px">Favorite band aku?</h1>
+      <div fxLayout="row" fxLayoutGap="8px">
+        <mat-form-field>
+          <mat-label>Fill your answer</mat-label>
+          <input matInput placeholder="..." type="text" formControlName="question_1" />
+        </mat-form-field>
+        <button style="height: 80%" mat-raised-button color="primary" (click)="checkQuestion1()">
+          <mat-icon>done_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div fxLayout="column">
+      <h1 style="font-size: 14px">Bis - bis apa yang bisa masuk masjid?</h1>
+      <div fxLayout="row" fxLayoutGap="8px">
+        <mat-form-field>
+          <mat-label>Fill your answer</mat-label>
+          <input matInput placeholder="..." type="text" formControlName="question_2" />
+        </mat-form-field>
+        <button style="height: 80%" mat-raised-button color="primary" (click)="checkQuestion2()">
+          <mat-icon>done_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div fxLayout="column">
+      <h1 style="font-size: 14px">Makanan yang diceritain mami mulu adalah?</h1>
+      <div fxLayout="row" fxLayoutGap="8px">
+        <mat-form-field>
+          <mat-label>Fill your answer</mat-label>
+          <input matInput placeholder="..." type="text" formControlName="question_3" />
+        </mat-form-field>
+        <button style="height: 80%" mat-raised-button color="primary" (click)="checkQuestion3()">
+          <mat-icon>done_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="data['value'] === 2 ">
+    <ng-container *ngIf="!isLoading">
+      <div fxLayout="row" fxLayoutGap="8px" style="justify-content: center">
+        <mat-form-field>
+          <mat-label>Faliha</mat-label>
+          <input [(ngModel)]="falihaFormTitle" matInput placeholder="..." type="text" disabled />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>A.I a.k.a computer </mat-label>
+          <input [(ngModel)]="aiFormTitle" matInput placeholder="..." type="text" disabled />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="8px" style="justify-content: center; align-items: center; height: 100%">
+    
+        <ng-container *ngFor="let eachSuit of suitCase">
+          <div class="pointer2" (click)="suitValue(eachSuit)" >
+            <h1 style="font-size: 70px">{{eachSuit['name']}}</h1>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="data['value'] === 3">
+    <mat-form-field style="width: 400px !important ; height: 100%" appearance="fill">
+      <mat-label>Fill your answer</mat-label>
+      <input matInput placeholder="..." type="text" [formControl]="wishForm" />
+    </mat-form-field>
+    <ng-container *ngIf="succesHref === 0 && nextChallenge === 0">
+      <button mat-raised-button color="warn" (click)="clickMe()">
+        Click ME!
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="succesHref === 1 && nextChallenge === 0">
+      <a target="_blank" (click)="move()" [href]="hrefVariable" style="list-style: none">SEND ME!!</a>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="nextChallenge === 1">
+    <button mat-raised-button color="accent" (click)="nextChallengeFunc()">Next!</button>
+  </ng-container>
+</div>
